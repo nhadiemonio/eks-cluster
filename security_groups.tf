@@ -35,4 +35,7 @@ resource "aws_security_group_rule" "allow-all-inbound-rules" {
   security_group_id = aws_security_group.allow-all-inbound.id
   to_port = 0
   type = "ingress"
+  cidr_blocks = [
+    "0.0.0.0/0"
+  ]
 }
