@@ -1,3 +1,4 @@
+# Outbound Default Security Group
 resource "aws_default_security_group" "default-public-sec-group" {
   depends_on = [aws_vpc.eks-vpc]
   vpc_id = aws_vpc.eks-vpc.id
@@ -15,6 +16,7 @@ resource "aws_default_security_group" "default-public-sec-group" {
   }
 }
 
+# An Allow All Security Group ( Change this by adding proper Security Groups! )
 resource "aws_security_group" "allow-all-inbound" {
   depends_on = [aws_vpc.eks-vpc]
   vpc_id = aws_vpc.eks-vpc.id
@@ -25,8 +27,9 @@ resource "aws_security_group" "allow-all-inbound" {
     Environment = terraform.workspace
   }
 }
-
+# An Allow All Security Group Rule ( Change this by adding proper Security Groups! )
 resource "aws_security_group_rule" "allow-all-inbound-rules" {
+  depends_on = [aws_security_group.allow-all-inbound]
   from_port = 0
   protocol = "-1"
   security_group_id = aws_security_group.allow-all-inbound.id

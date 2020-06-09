@@ -1,11 +1,14 @@
+# Default AWS region
 variable "aws_region" {
   default = "ap-southeast-1"
 }
 
+# vpc CIDR block
 variable "vpc_cidr_block" {
   default = "10.128.0.0/16"
 }
 
+# List of Subnets in the VPC
 variable "subnet" {
   type = map
   default = {
@@ -24,6 +27,7 @@ variable "subnet" {
   }
 }
 
+# List Containing Key Name and its Public Key
 variable "key-pairs-vars" {
   type = map
   default = {
